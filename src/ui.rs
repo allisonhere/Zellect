@@ -28,7 +28,7 @@ pub fn render(state: &State, rows: usize, cols: usize) {
     }
 
     // Title bar
-    let title = " Zellect — Layout Picker ";
+    let title = " Zellect — Add Layout To Current Session ";
     let title_pad = cols.saturating_sub(title.len()) / 2;
     println!(
         "{}\x1b[1;36m{}\x1b[0m",
@@ -66,6 +66,6 @@ pub fn render(state: &State, rows: usize, cols: usize) {
     // Help bar
     println!("{}", "─".repeat(cols));
     println!(
-        " \x1b[2m↑↓/jk\x1b[0m navigate  \x1b[2m<Enter>\x1b[0m new tab  \x1b[2ms\x1b[0m new session  \x1b[2mq/Esc\x1b[0m close"
+        " \x1b[2m↑↓/jk\x1b[0m navigate  \x1b[2m<Enter>\x1b[0m add layout as new tab(s)  \x1b[2mq/Esc\x1b[0m close"
     );
 }

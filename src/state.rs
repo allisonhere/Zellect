@@ -57,12 +57,8 @@ impl State {
                 self.apply_layout_new_tab();
                 true
             }
-            BareKey::Char('s') => {
-                self.apply_layout_new_session();
-                true
-            }
             BareKey::Esc | BareKey::Char('q') => {
-                hide_self();
+                close_self();
                 true
             }
             _ => false,
@@ -72,14 +68,7 @@ impl State {
     fn apply_layout_new_tab(&self) {
         if let Some((_, layout_info)) = self.layouts.get(self.selected) {
             new_tabs_with_layout_info(layout_info.clone());
-            hide_self();
-        }
-    }
-
-    fn apply_layout_new_session(&self) {
-        if let Some((_, layout_info)) = self.layouts.get(self.selected) {
-            switch_session_with_layout(None, layout_info.clone(), None);
-            hide_self();
+            close_self();
         }
     }
 }
