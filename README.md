@@ -38,16 +38,51 @@ target/wasm32-wasip1/release/zellect.wasm
 
 ## Install In Zellij
 
-Add this bind block to your Zellij config inside the `shared_among "normal" "locked"` section:
+Choose one of these approaches.
+
+### Option 1: Use The Built Plugin From Your Checkout
+
+This is the simplest option while developing locally. Use the absolute path to the built `.wasm` file from your own clone of the repo.
+
+Example:
 
 ```kdl
 bind "Alt l" {
-    LaunchOrFocusPlugin "file:/home/allie/Projects/zellij/Zellect/target/wasm32-wasip1/release/zellect.wasm" {
+    LaunchOrFocusPlugin "file:/absolute/path/to/Zellect/target/wasm32-wasip1/release/zellect.wasm" {
         floating true
         move_to_focused_tab true
     }
 }
 ```
+
+Replace `/absolute/path/to/Zellect` with the location of your checkout.
+
+### Option 2: Copy The Plugin Into Your Zellij Plugins Directory
+
+Create a plugins directory if needed:
+
+```bash
+mkdir -p ~/.config/zellij/plugins
+```
+
+Copy the built plugin:
+
+```bash
+cp target/wasm32-wasip1/release/zellect.wasm ~/.config/zellij/plugins/zellect.wasm
+```
+
+Then reference that stable path from your Zellij config:
+
+```kdl
+bind "Alt l" {
+    LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellect.wasm" {
+        floating true
+        move_to_focused_tab true
+    }
+}
+```
+
+Add the bind inside the `shared_among "normal" "locked"` section of your Zellij config.
 
 If `Alt l` is already in use in your config, either remove the conflicting bind or choose another shortcut.
 
@@ -78,7 +113,13 @@ Inside the plugin:
 If you want to test the plugin without relying on a keybinding, run this from inside an active Zellij session:
 
 ```bash
-zellij action launch-or-focus-plugin -f -m "file:/home/allie/Projects/zellij/Zellect/target/wasm32-wasip1/release/zellect.wasm"
+zellij action launch-or-focus-plugin -f -m "file:/absolute/path/to/Zellect/target/wasm32-wasip1/release/zellect.wasm"
+```
+
+Or, if you copied it into the Zellij plugins directory:
+
+```bash
+zellij action launch-or-focus-plugin -f -m "file:~/.config/zellij/plugins/zellect.wasm"
 ```
 
 ## Development Notes
