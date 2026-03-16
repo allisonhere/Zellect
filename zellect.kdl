@@ -1,0 +1,9 @@
+// Add this inside your keybinds block in config.kdl
+// e.g. inside: shared_among "normal" "locked" { ... }
+
+bind "Alt l" {
+    LaunchOrFocusPlugin "file:/home/allie/Projects/zellij/Zellect/target/wasm32-wasip1/release/zellect.wasm" {
+        floating true
+        move_to_focused_tab true
+    }
+}

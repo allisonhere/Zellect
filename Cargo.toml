@@ -1,0 +1,15 @@
+[package]
+name = "zellect"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+name = "zellect"
+
+[dependencies]
+zellij-tile = "0.43.1"
+
+[profile.release]
+opt-level = "s"
+strip = true
